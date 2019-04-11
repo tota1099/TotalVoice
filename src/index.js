@@ -1,3 +1,5 @@
+/* eslint no-console: [ { allow: ["log"] }] */
+
 import { send } from './total_voice_sms';
 
 const message = {
