@@ -1,4 +1,4 @@
-/* eslint no-console: [ { allow: ["log"] }] */
+/* eslint no-console: ["error", { allow: ["warn"] }] */
 
 import { send } from './total_voice_sms';
 
@@ -11,4 +11,4 @@ const message = {
   data_criacao: '2019-04-03T10:17:14-03:00',
 };
 
-send(JSON.stringify(message)).then(async data => console.log('aqui', await data.json())).catch(err => console.log('err', err));
+send(JSON.stringify(message)).then(async data => console.warn('aqui', await data.json())).catch(err => console.warn('err', err));
