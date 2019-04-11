@@ -45,6 +45,7 @@
   },
   "homepage": "https://github.com/tota1099/js-tdd-course#readme",
   "devDependencies": {
+    "@babel/cli": "^7.4.3",
     "@babel/core": "^7.4.0",
     "@babel/node": "^7.2.2",
     "@babel/preset-env": "^7.4.2",
