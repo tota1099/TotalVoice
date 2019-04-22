@@ -1,7 +1,7 @@
 /* eslint no-unused-expressions: 0 */
 import { describe, it } from 'mocha';
 import { expect } from 'chai';
-import { API_TOKEN, API_URL } from '../src/config';
+import { API_URL } from '../src/config';
 
 describe('Config', () => {
   describe('Check default values', () => {
