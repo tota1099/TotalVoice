@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Total Voice API Test</title>
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+
+  <div class="container">
+    <h1>Total Voice API</h1>
+
+    <div id="enviarSms">
+        <label>Número:</label>
+        <input type="text" class="form-control" placeholder="Número" id="numero" name="numero">
+        <br />
+        <label>Mensagem:</label>
+        <textarea class="form-control" name="mensagem" id="mensagem" placeholder="Escreva sua mensagem" ></textarea>
+        <br />
+        <button type="button" onclick="sendSms()" class="btn btn-primary">Enviar</button>
+    </div>
+  </div>
+  <script
+  src="https://code.jquery.com/jquery-3.4.0.min.js"
+  integrity="sha256-BJeo0qm959uMBGb65z40ejJYGSgR7REI4+CW1fNKwOg="
+  crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
+
+<script src="../dist/totalvoice-api.umd.js"></script>
+
+<script>
+
+  $('#numero').mask('(00) 0000-00009');
+
+  const sendSms = () => {
+
+    const numero = document.getElementById("numero").value.replace(/[^0-9]/g,'');
+    const mensagem = document.getElementById("mensagem").value.trim()
+    if(numero.length === 0){
+      alert('O campo Número é obrigatório!');
+      return;
+    } else if ( numero.length < 10 ){
+      alert('O Número informado é inválido!');
+      return;
+    }
+    if(mensagem.length === 0){
+      alert('O campo Mensagem é obrigatório!');
+      return;
+    }
+
+    const totalvoiceApi = new TotalVoiceApi({
+      token: 'YOUR-TOKEN',
+    });
+    const message = {
+      numero_destino: numero,
+      mensagem: mensagem,
+      resposta_usuario: true,
+      tags: 'test_library',
+      multi_sms: false
+    };
+    const sms = totalvoiceApi.send(message);
+
+    sms.then(resp => alert('SMS enviado com sucesso!!')).catch(resp => alert(`Aconteceu algum erro! Detalhes: ${resp.message}`));
+  }
+</script>
+</body>
+</html>

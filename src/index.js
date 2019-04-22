@@ -1,14 +1,28 @@
-/* eslint no-console: ["error", { allow: ["warn"] }] */
+import { API_URL } from './config';
 
-import { send } from './total_voice_sms';
+export default class TotalVoiceSms {
+  constructor(options) {
+    this.apiURL = options.apiURL || API_URL;
+    this.token = options.token;
+  }
 
-const message = {
-  numero_destino: '48984889977',
-  mensagem: 'Parabéns pelo seu dia!!! ',
-  resposta_usuario: true,
-  tags: 'luiz_test',
-  multi_sms: false,
-  data_criacao: '2019-04-03T10:17:14-03:00',
-};
+  request(url, options) {
+    const defaultOptions = {
+      headers: {
+        Accept: 'application/json',
+        'Access-Token': this.token,
+      },
+    };
 
-send(JSON.stringify(message)).then(async data => console.warn('aqui', await data.json())).catch(err => console.warn('err', err));
+    const fetchOptions = { ...defaultOptions, ...options };
+
+    return fetch(url, fetchOptions)
+      .then(resp => resp.json())
+      .then(resp => resp);
+  }
+
+  send(message) {
+    const options = { method: 'POST', body: JSON.stringify(message) };
+    return this.request(`${this.apiURL}/sms`, options);
+  }
+}

@@ -3,9 +3,7 @@ import chai, { expect } from 'chai';
 import { describe, it } from 'mocha';
 import sinon from 'sinon';
 import sinonChai from 'sinon-chai';
-import {
-  send,
-} from '../src/total_voice_sms';
+import TotalVoiceApi from '../src/index';
 
 import { API_URL } from '../src/config';
 
@@ -15,8 +13,12 @@ chai.use(sinonChai);
 
 describe('Total Voice SMS', () => {
   let fetchedStub;
+  let totalvoice;
 
   beforeEach(() => {
+    totalvoice = new TotalVoiceApi({
+      token: 'foo',
+    });
     fetchedStub = sinon.stub(global, 'fetch');
     fetchedStub.resolves({ json: () => {} });
   });
@@ -27,17 +29,17 @@ describe('Total Voice SMS', () => {
 
   describe('Smoke Tests', () => {
     it('should exist the method send', () => {
-      expect(send).to.be.a('function');
+      expect(totalvoice.send).to.be.a('function');
     });
   });
 
   describe('Send', () => {
     it('should call fetch function', () => {
-      send();
+      totalvoice.send();
       expect(fetchedStub).to.have.been.calledOnce;
     });
     it('should call with the correct URL', () => {
-      send();
+      totalvoice.send();
       expect(fetchedStub).to.have.been.calledWith(`${API_URL}/sms`);
     });
   });

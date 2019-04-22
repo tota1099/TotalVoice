@@ -8,8 +8,5 @@ describe('Config', () => {
     it('should has API_URL default with the correct URL', () => {
       expect(API_URL).to.be.equal('https://api.totalvoice.com.br');
     });
-    it('should has API_TOKEN default as empty', () => {
-      expect(API_TOKEN).to.be.equal('');
-    });
   });
 });
