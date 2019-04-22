@@ -1,5 +1,8 @@
 # Enviar SMS - Total Voice
 
+[![Build Status](https://travis-ci.org/tota1099/TotalVoice.svg?branch=master)](https://travis-ci.org/tota1099/TotalVoice)
+[![Coverage Status](https://coveralls.io/repos/github/tota1099/TotalVoice/badge.svg?branch=master)](https://coveralls.io/github/tota1099/TotalVoice?branch=master)
+
 Projeto construído utilizando a API de comunicação por voz e texto da [totalvoice](https://www.totalvoice.com.br/).
 
 ## Iniciando
