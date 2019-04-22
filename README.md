@@ -12,21 +12,76 @@ npm > 6.9.0 ou superior
 
 ### Instalando
 
-Um passo a passo para mostrar a você como rodar o projeto.
-
-1. Instalar as dependências
-
-```bash
-$ npm install
+```sh
+$ npm install totalvoice-api --save
 ```
 
-2.
+## Como usar
 
-```
-./node_modules/.bin/babel-node src/example1.js
+### ES6
+
+```js
+// to import a specific method
+import TotalVoiceApi from 'totalvoice-api';
+
+const totalvoiceApi = new TotalVoiceApi({
+  token: 'SEU_TOKEN_AQUI'
+});
+
+const mensagem = {
+  numero_destino: '48984449874',
+  mensagem: 'Parabéns pelo seu dia!!! ',
+  resposta_usuario: true,
+  tags: 'exemplo_tag',
+  multi_sms: false,
+  data_criacao: '2019-04-03T10:17:14-03:00',
+};
+
+// usando método
+totalvoiceApi.send(mensagem);
 ```
 
-## Rodando os testes
+### CommonJS
+
+```js
+const TotalVoiceApi = require('totalvoice-api').default;
+
+const totalvoiceApi = new TotalVoiceApi({
+  token: 'SEU_TOKEN_AQUI'
+});
+```
+
+### UMD in Browser
+
+```html
+<!-- to import non-minified version -->
+<script src="totalvoice-api.umd.js"></script>
+
+<!-- to import minified version -->
+<script src="totalvoice-api.umd.min.js"></script>
+```
+
+Depois disso a biblioteca estará disponível globalmente como TotalVoiceApi, como no exemplo:
+
+```js
+
+const totalvoiceApi = new TotalVoiceApi({
+  token: 'SEU_TOKEN_AQUI'
+});
+
+const mensagem = {
+  numero_destino: '48984449874',
+  mensagem: 'Parabéns pelo seu dia!!! ',
+  resposta_usuario: true,
+  tags: 'exemplo_tag',
+  multi_sms: false,
+  data_criacao: '2019-04-03T10:17:14-03:00',
+};
+
+totalvoiceApi.send(mensagem);
+```
+
+### Rodando os testes
 
 ```bash
 $ npm run test
@@ -48,7 +103,6 @@ $ npm run test:tdd
 
 * [NodeJS](https://nodejs.org/en/) - JavaScript runtime built
 * [Mocha](https://mochajs.org/) - JavaScript test framework
-* [ROME](https://rometools.github.io/rome/) - Used to generate RSS Feeds
 
 ## Autores
 
