@@ -8,6 +8,7 @@ const totalvoiceApi = new TotalVoiceAPI({
 });
 
 const message = {
+  numero_destino: '48998877665',
   mensagem: 'Parabéns pelo seu dia!!! ',
   resposta_usuario: true,
   tags: 'luiz_test',
@@ -16,4 +17,12 @@ const message = {
 };
 const send = totalvoiceApi.send(message);
 
-send.then(data => console.log(data)).catch(err => console.log(err));
+send
+  .then((resp) => {
+    if (resp.status !== 200) {
+      console.log(resp.mensagem);
+    } else {
+      console.log('SMS enviado com sucesso!!');
+    }
+  })
+  .catch(err => console.log(err));

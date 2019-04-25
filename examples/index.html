@@ -52,7 +52,7 @@
     }
 
     const totalvoiceApi = new TotalVoiceApi({
-      token: '57763ee327f26fa05f442616957adb3f',
+      token: 'YOUR-TOKEN',
     });
     const message = {
       numero_destino: numero,
@@ -63,7 +63,13 @@
     };
     const sms = totalvoiceApi.send(message);
 
-    sms.then(resp => alert('SMS enviado com sucesso!!')).catch(resp => alert(`Aconteceu algum erro! Detalhes: ${resp.message}`));
+    sms.then(resp => {
+      if (resp.status !== 200){
+        alert(resp.mensagem);
+      } else {
+        alert('SMS enviado com sucesso!!')
+      }
+    }).catch(err => alert(`Aconteceu algum erro!`));
   }
 </script>
 </body>
