@@ -1,6 +1,6 @@
 {
   "name": "totalvoice-api",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Nossa biblioteca do curso de JS com TDD na prática",
   "main": "lib/index.js",
   "scripts": {
