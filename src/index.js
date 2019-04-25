@@ -18,7 +18,12 @@ export default class TotalVoiceSms {
 
     return fetch(url, fetchOptions)
       .then(resp => resp.json())
-      .then(resp => resp);
+      .then((resp) => {
+        if (resp.status !== 200) {
+          throw new Error(resp.mensagem, resp.status);
+        }
+        return resp;
+      });
   }
 
   send(message) {
